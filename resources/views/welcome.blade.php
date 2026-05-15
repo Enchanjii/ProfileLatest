@@ -85,7 +85,8 @@
                                     <span
                                         class="px-2 py-1 bg-blue-50 text-blue-600 text-xs rounded font-medium">JavaScript</span>
                                 </div>
-                                <a href="https://enchanjii.github.io/EcoCycle/#"
+                                <a href="https://enchanjii.github.io/EcoCycle/#" target="_blank"
+                                    rel="noopener noreferrer"
                                     class="text-blue-600 font-medium hover:text-blue-800 inline-flex items-center">View
                                     Project <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor"
                                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -107,11 +108,13 @@
                                     emotional awareness by granting points for exercising or meditating, turning
                                     self-care into a tangible wellness tracker.</p>
                                 <div class="flex flex-wrap gap-2 mb-4">
-                                    <span class="px-2 py-1 bg-blue-50 text-blue-600 text-xs rounded font-medium">Java</span>
                                     <span
-                                        class="px-2 py-1 bg-blue-50 text-blue-600 text-xs rounded font-medium">Swing GUI</span>
+                                        class="px-2 py-1 bg-blue-50 text-blue-600 text-xs rounded font-medium">Java</span>
+                                    <span class="px-2 py-1 bg-blue-50 text-blue-600 text-xs rounded font-medium">Swing
+                                        GUI</span>
                                 </div>
-                                <a href="https://enchanjii.github.io/Group6_EmotiTrack/#"
+                                <a href="https://enchanjii.github.io/Group6_EmotiTrack/#" target="_blank"
+                                    rel="noopener noreferrer"
                                     class="text-blue-600 font-medium hover:text-blue-800 inline-flex items-center">View
                                     Project <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor"
                                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -139,7 +142,8 @@
                                     <span
                                         class="px-2 py-1 bg-blue-50 text-blue-600 text-xs rounded font-medium">JavaScript</span>
                                 </div>
-                                <a href="https://enchanjii.github.io/myProfile/#"
+                                <a href="https://enchanjii.github.io/myProfile/#" target="_blank"
+                                    rel="noopener noreferrer"
                                     class="text-blue-600 font-medium hover:text-blue-800 inline-flex items-center">View
                                     Project <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor"
                                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -149,8 +153,53 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="mt-16">
+                         <div class="text-center mb-16">
+                        <h3 class="text-3xl font-bold text-gray-900 mb-4">My Certificates</h3>
+                        <div class="w-16 h-1 bg-blue-600 mx-auto rounded"></div>
+                    </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                            <button type="button"
+                                class="certificate-trigger bg-gray-50 rounded-xl overflow-hidden border border-gray-200 shadow-sm text-left hover:shadow-md transition-shadow"
+                                data-cert-src="certificate-coursera.jpg" data-cert-alt="Coursera Certificate">
+                                <img src="certificate-coursera.jpg" alt="Coursera Certificate"
+                                    class="w-full h-44 object-cover">
+                            </button>
+                            <button type="button"
+                                class="certificate-trigger bg-gray-50 rounded-xl overflow-hidden border border-gray-200 shadow-sm text-left hover:shadow-md transition-shadow"
+                                data-cert-src="certificate-ibm.jpg" data-cert-alt="IBM Certificate">
+                                <img src="certificate-ibm.jpg" alt="IBM Certificate" class="w-full h-44 object-cover">
+                            </button>
+                            <button type="button"
+                                class="certificate-trigger bg-gray-50 rounded-xl overflow-hidden border border-gray-200 shadow-sm text-left hover:shadow-md transition-shadow"
+                                data-cert-src="certificate-googlecloud.jpg" data-cert-alt="Google Cloud Certificate">
+                                <img src="certificate-googlecloud.jpg" alt="Google Cloud Certificate"
+                                    class="w-full h-44 object-cover">
+                            </button>
+                            <button type="button"
+                                class="certificate-trigger bg-gray-50 rounded-xl overflow-hidden border border-gray-200 shadow-sm text-left hover:shadow-md transition-shadow"
+                                data-cert-src="certificate-deeplearning.jpg" data-cert-alt="Deep Learning Certificate">
+                                <img src="certificate-deeplearning.jpg" alt="Deep Learning Certificate"
+                                    class="w-full h-44 object-cover">
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </section>
+
+            <div id="certificate-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/75 p-4"
+                role="dialog" aria-modal="true" aria-labelledby="certificate-modal-title">
+                <div class="w-full max-w-5xl rounded-xl bg-white p-4 sm:p-6">
+                    <div class="mb-4">
+                        <h5 id="certificate-modal-title" class="text-lg font-semibold text-gray-900">Certificate Preview
+                        </h5>
+                    </div>
+                    <img id="certificate-modal-image" src="" alt=""
+                        class="max-h-[75vh] w-full rounded-lg border border-gray-200 object-contain">
+                </div>
+            </div>
 
             <!-- Contact Section -->
             <section id="contact" class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
@@ -245,6 +294,44 @@
             </div>
         </footer>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const modal = document.getElementById('certificate-modal');
+            const modalImage = document.getElementById('certificate-modal-image');
+            const triggers = document.querySelectorAll('.certificate-trigger');
+
+            function closeModal() {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+
+            function openModal(src, alt) {
+                modalImage.src = src;
+                modalImage.alt = alt;
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
+
+            triggers.forEach(function (trigger) {
+                trigger.addEventListener('click', function () {
+                    openModal(trigger.dataset.certSrc, trigger.dataset.certAlt);
+                });
+            });
+
+            modal.addEventListener('click', function (event) {
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+
+            document.addEventListener('keydown', function (event) {
+                if (event.key === 'Escape') {
+                    closeModal();
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
